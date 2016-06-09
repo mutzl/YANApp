@@ -1,0 +1,40 @@
+﻿<Page x:Class="YANApp.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:YANApp"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      DataContext="{Binding Source={StaticResource Locator},
+                            Path=MainViewModel}"
+      mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Margin="53,87,52,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Click="{x:Bind ViewModel.GotoCreateNewNote}"
+                Content="Create New Note" />
+        <Button Margin="53,154,52,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Click="{x:Bind ViewModel.GotoAllNotes}"
+                Content="Show All Notes" />
+        <Button x:Name="button_Copy1"
+                Margin="53,228,52,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Content="Search Notes" />
+        <Button Margin="53,298,52,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Click="{x:Bind ViewModel.GotoSettings}"
+                Content="Settings" />
+        <TextBlock Text="Yet Another Notes App"
+                   HorizontalAlignment="Left"
+                   Margin="53,10,0,0"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Style="{StaticResource TitleTextBlockStyle}" />
+
+    </Grid>
+</Page>
