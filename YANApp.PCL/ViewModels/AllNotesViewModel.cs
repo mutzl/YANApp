@@ -5,20 +5,26 @@
 	using System.Linq;
 
 	using GalaSoft.MvvmLight;
+	using GalaSoft.MvvmLight.Messaging;
+	using GalaSoft.MvvmLight.Views;
 
 	using Services;
 
+	using YANApp.PCL.Common;
 	using YANApp.PCL.Models;
 
 	public class AllNotesViewModel : ViewModelBase
 	{
 		private readonly IDataService dataService;
 
+		private readonly INavigationService navigationService;
+
 		private readonly SettingsViewModel settings;
 
-		public AllNotesViewModel(IDataService dataService, SettingsViewModel settings)
+		public AllNotesViewModel(IDataService dataService, INavigationService navigationService, SettingsViewModel settings)
 		{
 			this.dataService = dataService;
+			this.navigationService = navigationService;
 			this.settings = settings;
 
 
@@ -55,6 +61,14 @@
 
 			notes = notes.Take(settings.NumberOfNotes);
 			Notes = new ObservableCollection<Note>(notes);
+
+			Messenger.Default.Register<DeleteMessage>(this, DeleteNote);
+		}
+
+		private void DeleteNote(DeleteMessage message)
+		{
+			dataService.DeleteNote(message.Content);
+			LoadData();
 		}
 
 		public bool IsEmptyList => Notes.Count == 0;
@@ -65,6 +79,14 @@
 
 		public DateTime? FromDate { get; set; }
 		public DateTime? ToDate { get; set; }
+
+		public void GotoDetails()
+		{
+			if (SelectedNote != null)
+			{
+				navigationService.NavigateTo(Navigation.NoteDetail, SelectedNote);
+			}
+		}
 
 	}
 }

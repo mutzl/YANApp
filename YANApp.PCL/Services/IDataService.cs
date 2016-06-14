@@ -8,6 +8,10 @@
 	{
 		IEnumerable<Note> GetAllNotes();
 
+		void AddNote(Note note);
+
 		void SaveNote(Note note);
+
+		void DeleteNote(Note note);
 	}
 }

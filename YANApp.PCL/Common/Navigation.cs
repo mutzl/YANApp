@@ -5,6 +5,7 @@
 		public static string CreateNewNote = "CreateNewNote";
 		public static string AllNotes = "AllNotes";
 		public static string Settings = "Settings";
+		public static string NoteDetail = "NoteDetail";
 
 	}
 }

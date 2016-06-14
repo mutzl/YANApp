@@ -23,9 +23,19 @@
 			return allNotes;
 		}
 
-		public void SaveNote(Note note)
+		public void AddNote(Note note)
 		{
 			allNotes.Add(note);
+		}
+
+		public void SaveNote(Note note)
+		{
+			note.CreatedAt = DateTime.Now;
+		}
+
+		public void DeleteNote(Note note)
+		{
+			allNotes.Remove(note);
 		}
 	}
 }

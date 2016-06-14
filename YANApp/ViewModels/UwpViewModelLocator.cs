@@ -23,6 +23,7 @@
 		{
 			var service = new NavigationService();
 			service.Configure(Navigation.CreateNewNote, typeof(CreateNoteView));
+			service.Configure(Navigation.NoteDetail, typeof(NoteDetailView));
 			service.Configure(Navigation.AllNotes, typeof(AllNotesView));
 			service.Configure(Navigation.Settings, typeof(SettingsView));
 

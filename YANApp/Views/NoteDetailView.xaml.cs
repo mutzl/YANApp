@@ -9,19 +9,21 @@ namespace YANApp.Views
 	using Windows.UI.Xaml;
 	using Windows.UI.Xaml.Navigation;
 
+	using YANApp.PCL.Models;
 	using YANApp.PCL.ViewModels;
 
-	public sealed partial class CreateNoteView : Page
+	public sealed partial class NoteDetailView : Page
 	{
-		public CreateNoteView()
+		public NoteDetailView()
 		{
 			this.InitializeComponent(); 
 		}
 
-		private CreateNewNoteViewModel ViewModel => DataContext as CreateNewNoteViewModel;
+		private NoteDetailViewModel ViewModel => DataContext as NoteDetailViewModel;
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
+			ViewModel.Note = e.Parameter as Note;
 			((App)Application.Current).OnBackRequested += OnOnBackRequested;
 			base.OnNavigatedTo(e);
 		}

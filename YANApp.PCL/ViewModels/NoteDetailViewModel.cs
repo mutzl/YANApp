@@ -6,7 +6,7 @@
 	using YANApp.PCL.Models;
 	using YANApp.PCL.Services;
 
-	public class CreateNewNoteViewModel : ViewModelBase
+	public class NoteDetailViewModel : ViewModelBase
 	{
 		private readonly INavigationService navigationService;
 
@@ -15,7 +15,7 @@
 		private readonly IDialogService dialogService;
 
 
-		public CreateNewNoteViewModel(INavigationService navigationService, 
+		public NoteDetailViewModel(INavigationService navigationService, 
 									  IDataService dataService, 
 									  IDialogService dialogService)
 		{
@@ -23,24 +23,31 @@
 			this.dataService = dataService;
 			this.dialogService = dialogService;
 
-
+			PropertyChanged += (sender, args) =>
+				{
+					if (args.PropertyName == nameof(Note))
+					{
+						Note.PropertyChanged += (s, e) => IsDirty = true;
+					}
+				};
 		}
 
 
-		public Note NewNote { get; private set; } = new Note();
+		public Note Note { get; set; }
 
 
 		public void SaveNote()
 		{
-			dataService.AddNote(NewNote);
+			dataService.SaveNote(Note);
 			ClearAndGoBack();
 		}
 
+		public bool IsDirty { get; set; }
 
 
 		public async void Cancel()
 		{
-			if (!string.IsNullOrEmpty(NewNote.Title) || !string.IsNullOrEmpty(NewNote.Content))
+			if (IsDirty)
 			{
 				await dialogService.ShowMessage(
 					"There is unsaved data. Do you really want to navigate back?",
@@ -65,7 +72,6 @@
 
 		private void ClearAndGoBack()
 		{
-			NewNote = new Note();
 			navigationService.GoBack();
 
 		}

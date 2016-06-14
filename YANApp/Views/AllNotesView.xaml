@@ -39,14 +39,22 @@
                             VerticalAlignment="Top"
                             Date="{x:Bind ViewModel.ToDate, Converter={StaticResource DateConverter}, Mode=TwoWay}"
                             Header="To" />
-        <ListView Margin="0,213,0,0"           
+        <ListView Margin="0,213,0,0"
                   ItemContainerStyle="{StaticResource StretchedItemStyle}"
-                  ItemsSource="{x:Bind ViewModel.Notes, Mode=OneWay}">
+                  ItemsSource="{x:Bind ViewModel.Notes, Mode=OneWay}"
+                  SelectedItem="{x:Bind ViewModel.SelectedNote, Mode=TwoWay, Converter={StaticResource ObjectConverter}}"
+                  Tapped="{x:Bind ViewModel.GotoDetails}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:Note">
-                    <Grid>
+                    <Grid Holding="UIElement_OnHolding">
+                        <FlyoutBase.AttachedFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Click="{x:Bind Delete}" Text="Delete" />
+                            </MenuFlyout>
+                        </FlyoutBase.AttachedFlyout>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -57,6 +65,11 @@
                         <TextBlock Grid.Column="1"
                                    HorizontalAlignment="Right"
                                    Text="{x:Bind CreatedAt, Converter={StaticResource FormatConverter}, ConverterParameter=dd.MM.yyyy HH:mm}" />
+                        <HyperlinkButton Grid.RowSpan="2"
+                                         Grid.Column="2"
+                                         Margin="5"
+                                         Click="{x:Bind Delete}"
+                                         Content="Delete" />
                         <TextBlock Grid.Row="1"
                                    Grid.ColumnSpan="2"
                                    Margin="0 0 0 10"
@@ -68,8 +81,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock Text="No Notes"   Visibility="{x:Bind ViewModel.IsEmptyList, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+        <TextBlock Margin="10,213,10,0"
                    Style="{StaticResource TitleTextBlockStyle}"
-                   Margin="10,213,10,0" />
+                   Text="No Notes"
+                   Visibility="{x:Bind ViewModel.IsEmptyList, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </Page>

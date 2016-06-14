@@ -47,6 +47,7 @@
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\IStorageService.cs" />
     <Compile Include="ViewModels\AllNotesViewModel.cs" />
+    <Compile Include="ViewModels\NoteDetailViewModel.cs" />
     <Compile Include="ViewModels\CreateNewNoteViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />

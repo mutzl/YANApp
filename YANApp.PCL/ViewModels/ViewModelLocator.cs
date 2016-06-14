@@ -15,6 +15,7 @@
 			SimpleIoc.Default.Register<MainViewModel>();
 			SimpleIoc.Default.Register<AllNotesViewModel>();
 			SimpleIoc.Default.Register<CreateNewNoteViewModel>();
+			SimpleIoc.Default.Register<NoteDetailViewModel>();
 			SimpleIoc.Default.Register<SettingsViewModel>();
 
 
@@ -25,6 +26,7 @@
 		public SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
 		public AllNotesViewModel AllNotesViewModel => ServiceLocator.Current.GetInstance<AllNotesViewModel>();
 		public CreateNewNoteViewModel CreateNewNoteViewModel => ServiceLocator.Current.GetInstance<CreateNewNoteViewModel>();
+		public NoteDetailViewModel NoteDetailViewModel => ServiceLocator.Current.GetInstance<NoteDetailViewModel>();
 
 	}
 }

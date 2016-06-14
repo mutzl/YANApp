@@ -19,22 +19,17 @@
                 VerticalAlignment="Top"
                 Click="{x:Bind ViewModel.GotoAllNotes}"
                 Content="Show All Notes" />
-        <Button x:Name="button_Copy1"
-                Margin="53,228,52,0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Top"
-                Content="Search Notes" />
         <Button Margin="53,298,52,0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
                 Click="{x:Bind ViewModel.GotoSettings}"
                 Content="Settings" />
-        <TextBlock Text="Yet Another Notes App"
+        <TextBlock Margin="53,10,0,0"
                    HorizontalAlignment="Left"
-                   Margin="53,10,0,0"
-                   TextWrapping="Wrap"
                    VerticalAlignment="Top"
-                   Style="{StaticResource TitleTextBlockStyle}" />
+                   Style="{StaticResource TitleTextBlockStyle}"
+                   Text="Yet Another Notes App"
+                   TextWrapping="Wrap" />
 
     </Grid>
 </Page>

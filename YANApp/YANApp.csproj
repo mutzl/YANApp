@@ -96,12 +96,19 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\ObjectConverter.cs" />
     <Compile Include="Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converters\FormatConverter.cs" />
+    <Compile Include="Controls\NoteControl.xaml.cs">
+      <DependentUpon>NoteControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\LocalStorageService.cs" />
     <Compile Include="ViewModels\UwpViewModelLocator.cs" />
     <Compile Include="Views\AllNotesView.xaml.cs">
       <DependentUpon>AllNotesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoteDetailView.xaml.cs">
+      <DependentUpon>NoteDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateNoteView.xaml.cs">
       <DependentUpon>CreateNoteView.xaml</DependentUpon>
@@ -136,9 +143,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\NoteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AllNotesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoteDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CreateNoteView.xaml">
       <SubType>Designer</SubType>
