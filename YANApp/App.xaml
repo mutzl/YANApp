@@ -16,5 +16,7 @@
 
         <converters:FormatConverter x:Key="FormatConverter" />
 
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
     </Application.Resources>
 </Application>

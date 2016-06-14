@@ -95,6 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converters\FormatConverter.cs" />
     <Compile Include="Services\LocalStorageService.cs" />
     <Compile Include="ViewModels\UwpViewModelLocator.cs" />
