@@ -29,11 +29,12 @@ namespace YANApp.Controls
 					Note.PropertyChanged += (s, e) =>
 						{
 							RaisePropertyChanged(nameof(CanSaveNote));
-							IsDirty = Note.Title != originalTitle || Note.Content != originalContent;
+							IsDirty = Note.Title != originalTitle || Note.Description != originalContent;
 						};
 				};
 
 		}
+
 
 		public Note Note
 		{
@@ -48,7 +49,7 @@ namespace YANApp.Controls
 		{
 			var control = (NoteControl)dependencyObject;
 			control.originalTitle = ((Note)args.NewValue).Title;
-			control.originalContent = ((Note)args.NewValue).Content;
+			control.originalContent = ((Note)args.NewValue).Description;
 			control.Bindings.Update();
 		}
 
@@ -70,7 +71,7 @@ namespace YANApp.Controls
 		{
 			get
 			{
-				bool hasData = !string.IsNullOrEmpty(Note.Title) && !string.IsNullOrEmpty(Note.Content);
+				bool hasData = !string.IsNullOrEmpty(Note.Title) && !string.IsNullOrEmpty(Note.Description);
 				if (NeedChangeForSave)
 				{
 					return IsDirty && hasData;

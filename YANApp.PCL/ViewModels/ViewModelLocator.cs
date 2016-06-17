@@ -19,7 +19,8 @@
 			SimpleIoc.Default.Register<SettingsViewModel>();
 
 
-			SimpleIoc.Default.Register<IDataService, OneTimeDataService>();
+			//SimpleIoc.Default.Register<IDataService, OneTimeDataService>();
+			SimpleIoc.Default.Register<IDataService, CloudDataService>();
 		}
 
 		public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();

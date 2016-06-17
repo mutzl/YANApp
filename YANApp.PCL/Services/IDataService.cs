@@ -1,17 +1,18 @@
 ﻿namespace YANApp.PCL.Services
 {
 	using System.Collections.Generic;
+	using System.Threading.Tasks;
 
 	using YANApp.PCL.Models;
 
 	public interface IDataService
 	{
-		IEnumerable<Note> GetAllNotes();
+		Task<IEnumerable<Note>> GetAllNotes();
 
-		void AddNote(Note note);
+		Task AddNote(Note note);
 
-		void SaveNote(Note note);
+		Task SaveNote(Note note);
 
-		void DeleteNote(Note note);
+		Task DeleteNote(Note note);
 	}
 }

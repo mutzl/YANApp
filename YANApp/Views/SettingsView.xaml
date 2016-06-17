@@ -9,24 +9,33 @@
       mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock HorizontalAlignment="Left"
-                   Margin="10,10,0,0"
-                   TextWrapping="Wrap"
-                   Text="Settings"
+        <TextBlock Margin="10,10,0,0"
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Style="{StaticResource TitleTextBlockStyle}" />
+                   Style="{StaticResource TitleTextBlockStyle}"
+                   Text="Settings"
+                   TextWrapping="Wrap" />
         <StackPanel Margin="10,81,10,10">
 
-            <TextBox Header="Number of notes"
-                     Margin="0 5"
+            <TextBox Margin="0 5"
                      HorizontalAlignment="Left"
-                     Text="{Binding NumberOfNotes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
+                     Header="Number of notes"
+                     Text="{Binding NumberOfNotes,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}"
                      TextWrapping="Wrap" />
-            <ToggleSwitch Header="Sortierung"
-                          OnContent="Aufsteigend"
+            <ToggleSwitch Margin="0 5"
+                          Header="Sortierung"
+                          IsOn="{x:Bind ViewModel.IsSortAscending, Mode=TwoWay}"
                           OffContent="Absteigend"
-                          Margin="0 5"
-                          IsOn="{x:Bind ViewModel.IsSortAscending, Mode=TwoWay}" />
+                          OnContent="Aufsteigend" />
+            <TextBox Margin="0 5"
+                     HorizontalAlignment="Left"
+                     Header="Unique Device Id"
+                     Text="{Binding TenantId,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}"
+                     TextWrapping="Wrap" />
         </StackPanel>
     </Grid>
 </Page>

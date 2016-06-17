@@ -1,9 +1,9 @@
 ﻿namespace YANApp.PCL.Models
 {
-	using System;
-
 	using GalaSoft.MvvmLight;
 	using GalaSoft.MvvmLight.Messaging;
+	using Newtonsoft.Json;
+	using System;
 
 	public class Note : ObservableObject
 	{
@@ -11,9 +11,13 @@
 		{
 			CreatedAt = DateTime.Now;
 		}
+
+		public int Id { get; set; }
+
 		public string Title { get; set; }
 
-		public string Content { get; set; }
+		[JsonProperty("Content")]
+		public string Description { get; set; }
 
 		public DateTime CreatedAt { get; set; }
 

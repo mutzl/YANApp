@@ -17,13 +17,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace YANApp
 {
-	using Windows.UI.Core;
+    using Windows.UI.Core;
 
-	using Microsoft.Practices.ServiceLocation;
+    using Microsoft.Practices.ServiceLocation;
 
-	using YANApp.PCL.ViewModels;
+    using YANApp.PCL.ViewModels;
 
-	/// <summary>
+    /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
@@ -71,16 +71,16 @@ namespace YANApp
                 Window.Current.Content = rootFrame;
             }
 
-			SystemNavigationManager.GetForCurrentView().BackRequested += AppBackRequested;
+            SystemNavigationManager.GetForCurrentView().BackRequested += AppBackRequested;
 
-			rootFrame.Navigated += (sender, args) =>
-			{
-				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility
-					= rootFrame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
-			};
+            rootFrame.Navigated += (sender, args) =>
+            {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility
+                    = rootFrame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+            };
 
 
-			if (e.PrelaunchActivated == false)
+            if (e.PrelaunchActivated == false)
             {
                 if (rootFrame.Content == null)
                 {
@@ -94,33 +94,33 @@ namespace YANApp
             }
         }
 
-		public event EventHandler<BackRequestedEventArgs> OnBackRequested;
+        public event EventHandler<BackRequestedEventArgs> OnBackRequested;
 
-		private void AppBackRequested(object sender, BackRequestedEventArgs e)
-		{
+        private void AppBackRequested(object sender, BackRequestedEventArgs e)
+        {
 
-			OnBackRequested?.Invoke(this, e);
+            OnBackRequested?.Invoke(this, e);
 
-			if (!e.Handled)
-			{
-				// Default is to navigate back within the Frame
-				Frame frame = Window.Current.Content as Frame;
-				if (frame.CanGoBack)
-				{
-					frame.GoBack();
-					// Signal handled so that system doesn't navigate back through app stack
-					e.Handled = true;
-				}
-			}
+            if (!e.Handled)
+            {
+                // Default is to navigate back within the Frame
+                Frame frame = Window.Current.Content as Frame;
+                if (frame.CanGoBack)
+                {
+                    frame.GoBack();
+                    // Signal handled so that system doesn't navigate back through app stack
+                    e.Handled = true;
+                }
+            }
 
-		}
+        }
 
-		/// <summary>
-		/// Invoked when Navigation to a certain page fails
-		/// </summary>
-		/// <param name="sender">The Frame which failed navigation</param>
-		/// <param name="e">Details about the navigation failure</param>
-		void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        /// <summary>
+        /// Invoked when Navigation to a certain page fails
+        /// </summary>
+        /// <param name="sender">The Frame which failed navigation</param>
+        /// <param name="e">Details about the navigation failure</param>
+        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }

@@ -30,9 +30,9 @@
 		public Note NewNote { get; private set; } = new Note();
 
 
-		public void SaveNote()
+		public async void SaveNote()
 		{
-			dataService.AddNote(NewNote);
+			await dataService.AddNote(NewNote);
 			ClearAndGoBack();
 		}
 
@@ -40,7 +40,7 @@
 
 		public async void Cancel()
 		{
-			if (!string.IsNullOrEmpty(NewNote.Title) || !string.IsNullOrEmpty(NewNote.Content))
+			if (!string.IsNullOrEmpty(NewNote.Title) || !string.IsNullOrEmpty(NewNote.Description))
 			{
 				await dialogService.ShowMessage(
 					"There is unsaved data. Do you really want to navigate back?",

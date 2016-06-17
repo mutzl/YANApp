@@ -34,7 +34,7 @@
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch"
                  Header="Content"
-                 Text="{Binding Note.Content,
+                 Text="{Binding Note.Description,
                                     Mode=TwoWay,
                                     UpdateSourceTrigger=PropertyChanged}"
                  TextWrapping="Wrap" />

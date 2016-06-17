@@ -19,6 +19,8 @@
 
 		public bool IsSortAscending { get; set; }
 
+		public string TenantId { get; set; }
+
 		
 
 
@@ -26,12 +28,14 @@
 		{
 			storageService.Write(nameof(NumberOfNotes), NumberOfNotes);
 			storageService.Write(nameof(IsSortAscending), IsSortAscending);
+			storageService.Write(nameof(TenantId), TenantId);
 		}
 
 		public void Load()
 		{
 			NumberOfNotes = storageService.Read<int>(nameof(NumberOfNotes), 5);
 			IsSortAscending = storageService.Read<bool>(nameof(IsSortAscending), true);
+			TenantId = storageService.Read<string>(nameof(TenantId), "UniqueTenantId");
 		}
 	}
 }

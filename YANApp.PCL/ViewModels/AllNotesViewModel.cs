@@ -42,9 +42,9 @@
 
 		public Note SelectedNote { get; set; }
 
-		public void LoadData()
+		public async void LoadData()
 		{
-			var notes = dataService.GetAllNotes();
+			var notes = await dataService.GetAllNotes();
 
 			//if (!string.IsNullOrEmpty(SearchTerm)) notes = notes.Where(n => n.Title.ToLower().Contains(SearchTerm) || n.Content.ToLower().Contains(SearchTerm));
 			//if (FromDate.HasValue)                 notes = notes.Where(n => n.CreatedAt >= FromDate.Value.Date);  
@@ -52,7 +52,7 @@
 
 			notes = notes.Where(n => (!FromDate.HasValue || n.CreatedAt >= FromDate.Value.Date)
 								  && (!ToDate.HasValue || n.CreatedAt < ToDate.Value.Date.AddDays(1))
-								  && (string.IsNullOrEmpty(SearchTerm) || n.Title.ToLower().Contains(SearchTerm) || n.Content.ToLower().Contains(SearchTerm)));
+								  && (string.IsNullOrEmpty(SearchTerm) || n.Title.ToLower().Contains(SearchTerm) || n.Description.ToLower().Contains(SearchTerm)));
 
 			notes = settings.IsSortAscending
 						? notes.OrderBy(n => n.CreatedAt)
@@ -65,13 +65,13 @@
 			Messenger.Default.Register<DeleteMessage>(this, DeleteNote);
 		}
 
-		private void DeleteNote(DeleteMessage message)
+		private async void DeleteNote(DeleteMessage message)
 		{
-			dataService.DeleteNote(message.Content);
+			await dataService.DeleteNote(message.Content);
 			LoadData();
 		}
 
-		public bool IsEmptyList => Notes.Count == 0;
+		public bool IsEmptyList => Notes == null || Notes.Count == 0;
 
 		public ObservableCollection<Note> Notes { get; set; }
 

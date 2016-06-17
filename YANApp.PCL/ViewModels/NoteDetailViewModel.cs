@@ -36,9 +36,9 @@
 		public Note Note { get; set; }
 
 
-		public void SaveNote()
+		public async void SaveNote()
 		{
-			dataService.SaveNote(Note);
+			await dataService.SaveNote(Note);
 			ClearAndGoBack();
 		}
 

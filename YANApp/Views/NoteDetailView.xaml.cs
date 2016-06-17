@@ -25,7 +25,6 @@ namespace YANApp.Views
 		{
 			ViewModel.Note = e.Parameter as Note;
 			((App)Application.Current).OnBackRequested += OnOnBackRequested;
-			base.OnNavigatedTo(e);
 		}
 
 		protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
